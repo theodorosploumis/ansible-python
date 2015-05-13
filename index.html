@@ -187,7 +187,7 @@ bserver.example.org
 
 [dbservers]
 localhost
-              </code></pre>
+            </code></pre>
           </section>
 
           <section>
@@ -246,10 +246,15 @@ system_packages:
           </section>
 
           <section>
+            <h2>Look at <a href="https://docs.ansible.com">the docs</a> before anything else!</h2>
+          </section>
+
+          <section>
             <h2><a href="http://docs.ansible.com/YAMLSyntax.html">Avoid syntax mistakes with YAML</a></h2>
             <pre><code class="yaml">
 ---
 # Comments start with "#"
+# All yaml files are jinja2 template
 name: Example Developer
 job: Developer
 skill: Elite
