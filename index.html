@@ -113,7 +113,7 @@
         <section>
             <section>
               <h2>Ansible needs</h2>
-              <h5>On Configuration machine</h5>
+              <h5>On Admin machine</h5>
               <ul>
               		<li>One (non-Windows) machine</li>
                   <li>OpenSSH</li>
@@ -124,7 +124,7 @@
 
             <section>
               <h2>Ansible needs</h2>
-              <h5>On Configured machine(s)</h5>
+              <h5>On Configured machine(s) (nodes)</h5>
               <ul>
                 <li>Python</li>
                 <li>OpenSSH</li>
@@ -137,8 +137,8 @@
               <pre><code class="bash">
   // Can also use apt, yum, brew, compile from source etc
   // We are installing version 1.9.1
-  $ sudo easy_install pip
-  $ sudo pip install ansible==1.9.1
+  $sudo easy_install pip
+  $sudo pip install ansible==1.9.1
 
               </code></pre>
         </section>
@@ -170,8 +170,8 @@
 
             <p>Execute a quick command to a machine using /usr/bin/ansible.</p>
             <pre><code class="bash">
-$ ansible localhost -m setup -i hosts
-$ ansible localhost -m service -a "name=apache2 state=started" -i hosts
+$ansible localhost -m setup -i hosts
+$ansible localhost -m service -a "name=apache2 state=started" -i hosts
               </code></pre>
           </section>
 
@@ -211,12 +211,14 @@ system_packages:
 
           <section>
             <h2>Modules</h2>
+            <p>Accomplish dedicated Tasks (set values, use templates etc)</p>
             <p>The "mini tools" of Ansible!</p>
           </section>
 
           <section>
             <h2>Playbook</h2>
 
+            <p>YAML formatted files orchestrate steps sequentially</p>
             <p>This is where you love Ansible!</p>
             <pre><code class="yaml">
 ---
@@ -275,14 +277,14 @@ languages:
           <section>
             <h2><a href="http://linux.die.net/man/1/ansible-doc">Linux man docs for core modules</a></h2>
             <pre><code class="bash">
-$ ansible-doc
+$ansible-doc [options] [module...]
               </code></pre>
           </section>
 
           <section>
             <h2><a href="http://docs.ansible.com/playbooks_vault.html">Encrypt with ansible-vault module</a></h2>
             <pre><code class="bash">
-$ ansible-vault encrypt foo.yml
+$ansible-vault encrypt foo.yml
               </code></pre>
           </section>
 
@@ -358,6 +360,24 @@ $ansible-playbook example.yml --tags "configuration,packages"
           <h2>Tasks with <a href="http://docs.ansible.com/playbooks_checkmode.html">check mode (Dry Run)</a></h2>
           <pre><code class="bash">
 $ansible-playbook foo.yml --check --diff
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Share and download Ansible roles</h2>
+          <pre><code class="bash">
+$ansible-galaxy <command>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Set up a remote copy of ansible with <a href="https://github.com/ansible/ansible-examples/blob/master/language_features/ansible_pull.yml">ansible-pull</a></h2>
+          <ul>
+            <li>It pulls the specified git repository into a specified directory.</li>
+            <li>If the repository has changed, it runs a file called [hostname].yml or local.yml in the repo’s root directory.</li>
+          </ul>
+          <pre><code class="bash">
+$ansible-pull [options] [playbook.yml]
           </code></pre>
         </section>
 
