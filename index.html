@@ -55,6 +55,9 @@
             <p>
                <small>Date 13 May 2015, Ansible Version <a href="http://releases.ansible.com/ansible/">1.9.1</a></small>
             </p>
+            <p>
+              <small>Source on <a href="http://theodorosploumis.github.io/ansible-python">GitHub</a></small>
+            </p>
         </section>
 
         <section>
@@ -251,6 +254,31 @@ system_packages:
           </section>
 
           <section>
+            <h2><a href="http://docs.ansible.com/YAMLSyntax.html">Avoid syntax mistakes with YAML</a></h2>
+            <pre>
+              <code class="yaml">
+---
+# An employee record
+name: Example Developer
+job: Developer
+skill: Elite
+employed: True
+# Each list item starts with a "-"
+foods:
+    - Apple
+    - Orange
+    - Strawberry
+    - Mango
+# Spaces matter!
+languages:
+    ruby: Elite
+    python: Elite
+    dotnet: Lame
+              </code>
+            </pre>
+          </section>
+
+          <section>
             <h2><a href="http://linux.die.net/man/1/ansible-doc">Linux man docs for core modules</a></h2>
             <pre>
               <code class="bash">
@@ -298,6 +326,61 @@ $ ansible-vault encrypt foo.yml
 
 - name: Display all variables/facts known for a host
   debug: var=hostvars[inventory_hostname]
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Create Role structure automatically</h2>
+          <pre>
+            <code class="bash">
+$ansible-galaxy init roles/myrole
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Conditional Statements</h2>
+          <pre>
+            <code class="yaml">
+tasks:
+  - name: "shutdown Debian flavored systems"
+    command: /sbin/shutdown -t now
+    when: ansible_os_family == "Debian"
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Organize Playbooks with <a href="http://docs.ansible.com/playbooks_tags.html">tags</a></h2>
+          <pre>
+            <code class="yaml">
+tasks:
+    - yum: name={{ item }} state=installed
+      with_items:
+         - httpd
+         - memcached
+      tags:
+         - packages
+
+    - template: src=templates/src.j2 dest=/etc/foo.conf
+      tags:
+         - configuration
+            </code>
+          </pre>
+
+          <pre>
+            <code class="bash">
+$ansible-playbook example.yml --tags "configuration,packages"
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>Tasks with <a href="http://docs.ansible.com/playbooks_checkmode.html">check mode (Dry Run)</a></h2>
+          <pre>
+            <code class="bash">
+$ansible-playbook foo.yml --check --diff
             </code>
           </pre>
         </section>
@@ -433,6 +516,7 @@ $ ansible-vault encrypt foo.yml
 
           <p><a href="http://theodorosploumis.com">TheodorosPloumis.com</a></p>
           <p><a href="http://twitter.com/theoploumis">@theoploumis</a></p>
+          <p>Source on <a href="http://theodorosploumis.github.io/ansible-python">GitHub</a></p>
       </section>
 
     </div>
