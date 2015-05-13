@@ -1,14 +1,13 @@
-<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
 
-    <title>OpenDataSets - Winner of the 1st Thessaloniki hackathon - Nov. 2014</title>
+    <title>Ansible - The configuration management tool for humans</title>
 
     <meta name="description"
-          content="OpenDataSets - Manage Open Data easily">
+          content="Ansible automation tool - basic presentation">
     <meta name="author" content="@theoploumis">
 
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -18,7 +17,7 @@
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -44,153 +43,385 @@
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
         <section>
-            <h1>Open DataSets</h1>
+            <h1>Ansible</h1>
 
-            <h4>How to sell Drupal as a framework builder!</h4>
+            <img src="http://www.ansible.com/hs-fs/hub/330046/file-769078175-png/Official_Logos/ansible_circleA_red_small.png">
+
+            <h4>The configuration management tool for humans</h4>
 
             <p>
-                <small>Slideshow creation by <a href="http://theodorosploumis.com">TheodorosPloumis
-                </a> / <a href="http://twitter.com/theoploumis">@theoploumis</a></small>
+               <small>Presentation by <a href="http://theodorosploumis.com">TheodorosPloumis</a> / <a href="http://twitter.com/theoploumis">@theoploumis</a></small>
+            </p>
+            <p>
+               <small>Date 13 May 2015, Ansible Version <a href="http://releases.ansible.com/ansible/">1.9.1</a></small>
             </p>
         </section>
 
         <section>
-            <h2>The Hackathon</h2>
+		      <section>
+		          <h2>What is Configuration Management?</h2>
+
+		          <ul>
+		              <li>Configuration (eg servers)</li>
+		              <li>App deployment</li>
+		              <li>Continuous Deployment (eg tests)</li>
+		              <li>Provisioning</li>
+		              <li>Orchestration</li>
+		              <li>Everything that can be automated...</li>
+		          </ul>
+
+		      </section>
+		      <section>
+		      		<h2>A real life example</h2>
+		      		<img src="http://i.imgur.com/b1YihdT.gif" title="How automation works">
+		      		<p><small>Image by <a href="http://devopsreactions.tumblr.com">devopsreactions</a></small></p>
+		      </section>
+        </section>
+
+        <section>
+		          <h2>Why automation?</h2>
+
+		          <ul>
+		              <li>Tasks in code</li>
+		              <li>Collaboration</li>
+		              <li>Eliminate errors</li>
+		              <li>Write once</li>
+		              <li>...</li>
+		          </ul>
+
+		      </section>
+
+         <section>
+            <h2>Why Ansible?</h2>
 
             <ul>
-                <li>November 2014</li>
-                <li>2 days</li>
-                <li>12 Teams</li>
-                <li>3 winners</li>
-                <li>City data related</li>
+                <li>Open Source</li>
+                <li>Agentless!</li>
+                <li>Simple and human readable</li>
+                <li>Scaling up</li>
+                <li>Extensible (using any dynamic language!)</li>
+                <li>Tasks executed in order</li>
+                <li>Self documenting</li>
             </ul>
 
         </section>
 
         <section>
-            <h2>Features</h2>
+            <section>
+              <h2>Ansible needs</h2>
+              <h5>On Configuration machine</h5>
+              <ul>
+              		<li>One (non-Windows) machine</li>
+                  <li>OpenSSH</li>
+                  <li>YAML</li>
+                  <li>Python (paramiko, PyYAML, Jinja2, httplib2)</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2>Ansible needs</h2>
+              <h5>On Configured machine(s)</h5>
+              <ul>
+                <li>Python</li>
+                <li>OpenSSH</li>
+              </ul>
+            </section>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+              <pre><code class="bash">
+  // Can also use apt, yum, brew, compile from source etc
+  // We are installing version 1.9.1
+  $ sudo easy_install pip
+  $ sudo pip install ansible==1.9.1
+
+              </code></pre>
+        </section>
+
+        <section>
+            <h2>How it Works</h2>
+            <img src="https://d1cg27r99kkbpq.cloudfront.net/static/extra/43-ansible-multi-node-deployment-workflow.png">
+            <p><small>Image by <a href="https://sysadmincasts.com/episodes/43-19-minutes-with-ansible-part-1-4">sysadmincasts.com</a></small></p>
+        </section>
+
+        <section>
+
+          <section>
+            <h2>Ansible concepts</h2>
+
+            <p>Find more in the <a href="http://docs.ansible.com">Ansible Docs</a>.</p>
 
             <ul>
-                <li>Create Datasets (node types)</li>
-                <li>Clone Datasets (node types)</li>
-                <li>CRUD on Dataset content (nodes)</li>
-                <li>Import ...</li>
-                <li>Export ...</li>
-                <li>REST services ...</li>
-                <li>Linked Data ...</li>
-                <li>Anonymous data ...</li>
+                <li><a href="http://docs.ansible.com/intro_adhoc.html">Ad-hoc commands</a></li>
+                <li><a href="http://docs.ansible.com/intro_inventory.html">Inventories</a></li>
+                <li><a href="http://docs.ansible.com/playbooks_variables.html">Variables</a></li>
+                <li><a href="http://docs.ansible.com/modules.html">Modules</a></li>
+                <li><a href="http://docs.ansible.com/playbooks.html">Playbook Roles</a></li>
             </ul>
+          </section>
+
+          <section>
+            <h2>Ad-hoc commands</h2>
+
+            <p>Execute a quick command to a machine using /usr/bin/ansible.</p>
+            <pre>
+              <code class="bash">
+$ ansible localhost -m setup -i hosts
+$ ansible localhost -m service -a "name=apache2 state=started" -i hosts
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <h2>Inventory</h2>
+
+            <p>File (INI format) that describes Hosts and Groups</p>
+            <pre>
+              <code class="ini">
+[webservers]
+192.168.1.50
+aserver.example.org
+bserver.example.org
+
+[dbservers]
+localhost
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <h2>Variables</h2>
+
+            <p>Used with {{ variable }} replacement.</p>
+            <pre>
+              <code class="yaml">
+---
+project_name: myproject
+project_root: /var/projects/myproject
+project_repo: git@bitbucket.org:myuser/myproject.git
+system_packages:
+  - build-essential
+  - git
+  - nginx
+  - postgresql
+  - redis-server
+  - postfix
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <h2>Modules</h2>
+            <p>The "mini tools" of Ansible!</p>
+          </section>
+
+          <section>
+            <h2>Playbook</h2>
+
+            <p>This is where you love Ansible!</p>
+            <pre>
+              <code class="yaml">
+---
+- hosts: webservers
+  sudo: yes
+
+  tasks:
+
+  - name: install nginx
+    apt: name=nginx state=installed update_cache=yes
+
+  - name: write our nginx.conf
+    template: src=tpl/nginx.conf.j2 dest=/etc/nginx/nginx.conf
+    notify: restart nginx
+
+  - name: start nginx proccess
+    service: name=nginx state=started
+
+              </code>
+            </pre>
+          </section>
 
         </section>
 
         <section>
-            <h2>Custom Pages</h2>
+          <section>
+            <h2>Tips</h2>
+          </section>
 
-            <ul>
-                <li>All Datasets (custom views)</li>
-                <li>Dataset Page (custom views)</li>
-                <li>Administrator pages (system)</li>
-            </ul>
+          <section>
+            <h2><a href="http://linux.die.net/man/1/ansible-doc">Linux man docs for core modules</a></h2>
+            <pre>
+              <code class="bash">
+$ ansible-doc
+              </code>
+            </pre>
+          </section>
 
+          <section>
+            <h2><a href="http://docs.ansible.com/playbooks_vault.html">Encrypt with ansible-vault module</a></h2>
+            <pre>
+              <code class="bash">
+$ ansible-vault encrypt foo.yml
+              </code>
+            </pre>
+          </section>
+
+        <section>
+          <h2><a href="https://docs.ansible.com/playbooks_loops.html">Loops in Playbooks</a></h2>
+          <pre>
+            <code class="yaml">
+- name: add several users
+  user: name={{ item }} state=present groups=wheel
+  with_items:
+     - testuser1
+     - testuser2
+            </code>
+          </pre>
         </section>
 
         <section>
-            <section>
-            <h2>Interesting Modules</h2>
-                <p><blockquote>There is a module for that!</blockquote></p>
-                <p>~ 90 modules</p>
-            </section>
+          <h2><a href="http://docs.ansible.com/debug_module.html">Debugging module</a></h2>
+          <pre>
+            <code class="yaml">
+# Example that prints the loopback address and gateway for each host
+- debug: msg="System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}"
 
-            <section>
-                <h3><a href="http://drupal.org/project/mirrors" target="_blank">Mirrors</a></h3>
-            </section>
+- debug: msg="System {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}"
+  when: ansible_default_ipv4.gateway is defined
 
-            <section>
-                <h3><a href="http://drupal.org/project/contentapi" target="_blank">ContentApi</a></h3>
-            </section>
+- shell: /usr/bin/uptime
+  register: result
 
-            <section>
-                <h3><a href="http://drupal.org/project/dbee" target="_blank">Database Email
-                    Encryption</a></h3>
-            </section>
+- debug: var=result
 
-            <section>
-                <h3><a href="http://drupal.org/project/anonymous_publishing"
-                       target="_blank">Anonymous Publishing
-                </a></h3>
-            </section>
+- name: Display all variables/facts known for a host
+  debug: var=hostvars[inventory_hostname]
+            </code>
+          </pre>
+        </section>
 
-            <section>
-                <h3><a href="http://drupal.org/project/rdfx" target="_blank">RDFx</a></h3>
-            </section>
+      </section>
 
-            <section>
-                <h3><a href="http://drupal.org/project/remove_duplicates" target="_blank">Remove
-                    Duplicates
-                </a></h3>
-            </section>
-
-            <section>
-                <h3><a href="http://drupal.org/project/services_tools"
-                       target="_blank">Services Tools
-                </a></h3>
-            </section>
+        <section>
+          <h2>Is ther any UI tool?</h2>
+          <ul>
+            <li><a href="http://www.ansible.com/tower">Ansible Tower</a> ($$$)</li>
+            <li><a href="https://github.com/ansible-semaphore/semaphore">Ansible Semaphore</a> (Open Source)</li>
+            <li><a href="http://rundeck.org/">Rundeck</a> (Open Source)</li>
+          </ul>
         </section>
 
         <section>
-            <section>
-                <h2>One theme for all</h2>
-                <h3><a href="http://drupal.org/project/adminimal_theme" target="_blank">Adminimal
-                </a></h3>
-            </section>
-        </section>
+            <h2>Similar tools</h2>
 
-        <section>
-            <h2>The REST pain...</h2>
             <table>
                 <thead>
-                <tr>
-                    <th><a href="http://drupal.org/project/services" target="_blank">Services</a></th>
-                    <th><a href="http://drupal.org/project/contentapi" target="_blank">Content API
-                    </a></th>
-                    <th><a href="http://drupal.org/project/restws" target="_blank">RestWS</a></th>
-                    <th><a href="http://drupal.org/project/services_enity" target="_blank">
-                        Services Entity API</a></th>
-                    <th><a href="http://drupal.org/project/restful" target="_blank">
-                        RESTful</a></th>
-                </tr>
+                  <tr>
+                      <th>Tool</th>
+                  		<th><a href="http://ansible.com" >Ansible</a></th>
+                      <th><a href="https://puppetlabs.com" >Puppet</a></th>
+                      <th><a href="https://www.chef.io" >Chef</a></th>
+                      <th><a href="http://saltstack.com/" >Salt</a></th>
+                  </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>PUT, POST, DELETE</td>
-                    <td>GET, queries</td>
-                    <td>GET, queries</td>
-                    <td>Entity support</td>
-                    <td>The best?</td>
-                <tr>
+                  <tr>
+                  		<td>Release</td>
+                      <td>2009</td>
+                      <td>2005</td>
+                      <td>2009</td>
+                      <td>2011</td>
+                  <tr>
+                  <tr>
+                  		<td>Lang.</td>
+                      <td>Python</td>
+                      <td>Ruby</td>
+                      <td>Ruby</td>
+                      <td>Python</td>
+                  <tr>
+                  <tr>
+                      <td>Agentless</td>
+                      <td>Yes!</td>
+                      <td>No</td>
+                      <td>No</td>
+                      <td>Both</td>
+                  <tr>
                 </tbody>
             </table>
+            <p><small>Data from <a href="http://en.wikipedia.org/wiki/Comparison_of_open-source_configuration_management_software" terget="_blank">Wikipedia</a></small></p>
+
         </section>
 
         <section>
-            <section>
-                <h2>Future steps</h2>
-                <ul>
-                    <li>Drupal distribution</li>
-                    <li>Focus on Open Data</li>
-                    <li>Really Headless REST system</li>
-                </ul>
-            </section>
-        </section>
+          <section>
+            <h2>How to resources</h2>
+          </section>
 
-        <section>
-            <section>
-                <h2>Demo time</h2>
-                <h3><a href="http://dev.opendatasets.eu" target="_blank">dev.opendatasets.eu
-                </a></h3>
-                <h3><a href="http://soda.dev" target="_blank">Local site</a></h3>
-            </section>
-        </section>
+          <section>
+            <h2>Tutorials</h2>
+            <p><small>Order of this list is important...</small></p>
+            <ul>
+              <li><a href="http://www.ansible.com/resources">Ansible Quick Start Video</a></li>
+              <li><a href="https://www.youtube.com/watch?t=513&v=Qi0AhK7PMCI">Michael DeHaan: Ansible presentation at PyCon 2014</a></li>
+              <li><a href="https://sysadmincasts.com/">SysAdminCasts.com</a></li>
+              <li><a href="https://www.youtube.com/watch?v=xew7CMkL7jY">Super-basic introduction to Ansible</a></li>
+              <li><a href="http://kreusch.com.br/blog/2013/12/03/manage-a-development-machine-with-ansible/">Manage a development machine with Ansible</a></li>
+              <li><a href="http://wiredcraft.com/blog/getting-started-with-ansible-in-5-minutes/">Getting Started with Ansible in 5 minutes</a></li>
+              <li><a href="https://serversforhackers.com/an-ansible-tutorial">An Ansible tutorial</a></li>
+              <li><a href="http://www.stavros.io/posts/example-provisioning-and-deployment-ansible/">An example of provisioning and deployment with Ansible</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>Github repos with examples</h2>
+            <ul>
+                <li><a href="https://github.com/leucos/ansible-tuto">Ansible Tutorial (in steps)</a></li>
+                <li><a href="https://github.com/ansible/ansible-examples">Examples & best practices for building Playbooks</a></li>
+                <li><a href="https://github.com/Servers-for-Hackers">Server for Hackers repo</a></li>
+                <li><a href="https://github.com/geerlingguy/ansible-vagrant-examples">Ansible examples using Vagrant</a></li>
+            </ul>
+          </section>
+
+
+          <section>
+            <h2>Presentations</h2>
+            <ul>
+                <li><a href="http://www.slideshare.net/johnthethird/ansible-presentation-24942953">Ansible Presentation by John Lynch</a></li>
+                <li><a href="http://www.slideshare.net/MartinEtmajer/introduction-to-automated-deployments-with-ansible">Introduction to Automated Deployments with Ansible</a></li>
+                <li><a href="http://www.slideshare.net/jimi-c/whats-new-in-v2-ansiblefest-london-2015">What's New in v2 - AnsibleFest London 2015</a></li>
+                <li><a href="http://www.slideshare.net/dataloop/mark-phillips-uk-consultant-at-ansible">Mark Phillips (Ansible) - Go Agentless!</a></li>
+                <li><a href="http://www.slideshare.net/jimi-c/ansible-sf2014">Writing Role - Tips and Tricks</a></li>
+            </ul>
+          </section>
+
+      </section>
+
+      <section>
+        <h2>Project related links</h2>
+
+        <ul>
+            <li><a href="http://ansible.com">Ansible Official Website</a></li>
+            <li><a href="http://docs.ansible.com/list_of_all_modules.html">All (core) modules</a></li>
+            <li><a href="https://github.com/ansible">Github Organization</a></li>
+            <li><a href="http://twitter.com/ansible">twitter @ansible</a></li>
+            <li><a href="http://www.ansible.com/ansible-meetups">Ansible meetups</a></li>
+            <li><a href="https://galaxy.ansible.com">Ansible Galaxy</a></li>
+            <li><a href="https://groups.google.com/forum/#!forum/ansible-project">Mailing list</a></li>
+            <li><a href="irc://irc.freenode.net/ansible">irc.freenode.net #ansible</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Demo time</h2>
+      </section>
+
+      <section>
+          <h1>Thank you</h1>
+
+          <p><a href="http://theodorosploumis.com">TheodorosPloumis.com</a></p>
+          <p><a href="http://twitter.com/theoploumis">@theoploumis</a></p>
+      </section>
 
     </div>
 
@@ -244,50 +475,3 @@
 
 </body>
 </html>
-=======
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>OpenDatasets by theodorosploumis</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">OpenDatasets</h1>
-      <h2 class="project-tagline">Small Open Data - Drupal platfrom presentation</h2>
-      <a href="https://github.com/theodorosploumis/soda-reveal" class="btn">View on GitHub</a>
-      <a href="https://github.com/theodorosploumis/soda-reveal/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/theodorosploumis/soda-reveal/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
-
-    <section class="main-content">
-      <h1>
-<a id="opendatasets" class="anchor" href="#opendatasets" aria-hidden="true"><span class="octicon octicon-link"></span></a>OpenDatasets</h1>
-
-<p>This is a presentation using <strong>Reveal.js</strong> for the Drupal Platform <strong>OpenDatasets</strong> that won the 1st Thessaloniki Hackathon November 2014.</p>
-
-<ul>
-<li>Promo site: <a href="http://www.opendatasets.eu">opendatasets.eu</a>
-</li>
-<li>Presentation created by <a href="http://theodorosploumis.com/en">TheodorosPloumis</a>/<a href="http://twitter.com/theoploumis">@theoploumis</a>
-</li>
-</ul>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/theodorosploumis/soda-reveal">OpenDatasets</a> is maintained by <a href="https://github.com/theodorosploumis">theodorosploumis</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
-  
-  </body>
-</html>
-
->>>>>>> origin/gh-pages

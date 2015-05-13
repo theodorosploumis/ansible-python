@@ -1,5 +1,3 @@
-# OpenDatasets
-This is a presentation using **Reveal.js** for the Drupal Platform **OpenDatasets** that won the 1st Thessaloniki Hackathon November 2014.
+# Ansible automation tool (htttp://ansible.com)
+This is a presentation using **Reveal.js** for the Thessaloniki Python meetup www.meetup.com/PyThess/events/222348281/
 
-- Promo site: [opendatasets.eu](http://www.opendatasets.eu)
-- Presentation created by [TheodorosPloumis](http://theodorosploumis.com/en)/[@theoploumis](http://twitter.com/theoploumis)
