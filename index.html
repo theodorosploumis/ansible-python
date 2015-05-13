@@ -17,7 +17,7 @@
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
     <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <link rel="stylesheet" href="css/theme/league.css" id="theme">
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -169,20 +169,17 @@
             <h2>Ad-hoc commands</h2>
 
             <p>Execute a quick command to a machine using /usr/bin/ansible.</p>
-            <pre>
-              <code class="bash">
+            <pre><code class="bash">
 $ ansible localhost -m setup -i hosts
 $ ansible localhost -m service -a "name=apache2 state=started" -i hosts
-              </code>
-            </pre>
+              </code></pre>
           </section>
 
           <section>
             <h2>Inventory</h2>
 
             <p>File (INI format) that describes Hosts and Groups</p>
-            <pre>
-              <code class="ini">
+            <pre><code class="ini">
 [webservers]
 192.168.1.50
 aserver.example.org
@@ -190,16 +187,14 @@ bserver.example.org
 
 [dbservers]
 localhost
-              </code>
-            </pre>
+              </code></pre>
           </section>
 
           <section>
             <h2>Variables</h2>
 
             <p>Used with {{ variable }} replacement.</p>
-            <pre>
-              <code class="yaml">
+            <pre><code class="yaml">
 ---
 project_name: myproject
 project_root: /var/projects/myproject
@@ -211,8 +206,7 @@ system_packages:
   - postgresql
   - redis-server
   - postfix
-              </code>
-            </pre>
+              </code></pre>
           </section>
 
           <section>
@@ -224,8 +218,7 @@ system_packages:
             <h2>Playbook</h2>
 
             <p>This is where you love Ansible!</p>
-            <pre>
-              <code class="yaml">
+            <pre><code class="yaml">
 ---
 - hosts: webservers
   sudo: yes
@@ -242,8 +235,7 @@ system_packages:
   - name: start nginx proccess
     service: name=nginx state=started
 
-              </code>
-            </pre>
+              </code></pre>
           </section>
 
         </section>
@@ -255,10 +247,9 @@ system_packages:
 
           <section>
             <h2><a href="http://docs.ansible.com/YAMLSyntax.html">Avoid syntax mistakes with YAML</a></h2>
-            <pre>
-              <code class="yaml">
+            <pre><code class="yaml">
 ---
-# An employee record
+# Comments start with "#"
 name: Example Developer
 job: Developer
 skill: Elite
@@ -268,56 +259,47 @@ foods:
     - Apple
     - Orange
     - Strawberry
-    - Mango
-# Spaces matter!
+# Spaces and tabs matter!
 languages:
     ruby: Elite
     python: Elite
     dotnet: Lame
-              </code>
-            </pre>
+              </code></pre>
           </section>
 
           <section>
             <h2><a href="http://linux.die.net/man/1/ansible-doc">Linux man docs for core modules</a></h2>
-            <pre>
-              <code class="bash">
+            <pre><code class="bash">
 $ ansible-doc
-              </code>
-            </pre>
+              </code></pre>
           </section>
 
           <section>
             <h2><a href="http://docs.ansible.com/playbooks_vault.html">Encrypt with ansible-vault module</a></h2>
-            <pre>
-              <code class="bash">
+            <pre><code class="bash">
 $ ansible-vault encrypt foo.yml
-              </code>
-            </pre>
+              </code></pre>
           </section>
 
         <section>
           <h2><a href="https://docs.ansible.com/playbooks_loops.html">Loops in Playbooks</a></h2>
-          <pre>
-            <code class="yaml">
+          <pre><code class="yaml">
 - name: add several users
   user: name={{ item }} state=present groups=wheel
   with_items:
      - testuser1
      - testuser2
-            </code>
-          </pre>
+            </code></pre>
         </section>
 
         <section>
           <h2><a href="http://docs.ansible.com/debug_module.html">Debugging module</a></h2>
-          <pre>
-            <code class="yaml">
+          <pre><code class="yaml">
 # Example that prints the loopback address and gateway for each host
-- debug: msg="System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}"
+- debug: msg="System {{ inventory_host }} has uuid {{ ansible_product_uuid }}"
 
-- debug: msg="System {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}"
-  when: ansible_default_ipv4.gateway is defined
+- debug: msg="System {{ inventory_host }} has gateway {{ ansible_ipv4.gateway }}"
+  when: ansible_ipv4.gateway is defined
 
 - shell: /usr/bin/uptime
   register: result
@@ -326,35 +308,29 @@ $ ansible-vault encrypt foo.yml
 
 - name: Display all variables/facts known for a host
   debug: var=hostvars[inventory_hostname]
-            </code>
-          </pre>
+            </code></pre>
         </section>
 
         <section>
           <h2>Create Role structure automatically</h2>
-          <pre>
-            <code class="bash">
+          <pre><code class="bash">
 $ansible-galaxy init roles/myrole
-            </code>
-          </pre>
+            </code></pre>
         </section>
 
         <section>
           <h2>Conditional Statements</h2>
-          <pre>
-            <code class="yaml">
+          <pre><code class="yaml">
 tasks:
   - name: "shutdown Debian flavored systems"
     command: /sbin/shutdown -t now
     when: ansible_os_family == "Debian"
-            </code>
-          </pre>
+            </code></pre>
         </section>
 
         <section>
           <h2>Organize Playbooks with <a href="http://docs.ansible.com/playbooks_tags.html">tags</a></h2>
-          <pre>
-            <code class="yaml">
+          <pre><code class="yaml">
 tasks:
     - yum: name={{ item }} state=installed
       with_items:
@@ -366,23 +342,18 @@ tasks:
     - template: src=templates/src.j2 dest=/etc/foo.conf
       tags:
          - configuration
-            </code>
-          </pre>
+            </code></pre>
 
-          <pre>
-            <code class="bash">
+          <pre><code class="bash">
 $ansible-playbook example.yml --tags "configuration,packages"
-            </code>
-          </pre>
+          </code></pre>
         </section>
 
         <section>
           <h2>Tasks with <a href="http://docs.ansible.com/playbooks_checkmode.html">check mode (Dry Run)</a></h2>
-          <pre>
-            <code class="bash">
+          <pre><code class="bash">
 $ansible-playbook foo.yml --check --diff
-            </code>
-          </pre>
+          </code></pre>
         </section>
 
       </section>
